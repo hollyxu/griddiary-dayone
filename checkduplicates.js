@@ -5,12 +5,12 @@
  * This file reads all .txt files and checks their duplicates
  * and determines if duplicates are similar.
  *
- * Usage: node checkduplicates.js directoryName
+ * Usage: node checkduplicates.js [directoryName]
  * */
 
 var fs = require('fs');
 
-var dirName = process.argv[2];
+var dirName = process.argv[2] || 'Grid\ Diary';
 
 fs.readdir(dirName, (err, files) => {
   if (err) {
