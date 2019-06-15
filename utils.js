@@ -7,6 +7,9 @@ function getImageNames(dir) {
 
 
 function getNumericDate(date) {
+  if (!date) {
+    return null;
+  }
   var capturedDate = date.match(/^Diary - (.*).txt/);
   if (capturedDate && capturedDate[1]) {
     return new Date(capturedDate[1]).toISOString().substring(0, 10);
@@ -52,8 +55,10 @@ function computeAttachmentsAndDates(dir) {
       var props = _.indexBy(obj.properties, 'propertyName');
       var imgName = obj.dataFiles && obj.dataFiles[0];
       if (imgName) {
-        var numericDate;
-        if (props.createDate && props.createDate.value) {
+        var numericDate = '';
+        if (props.whichGrid && props.whichGrid.relatedIdentifier) {
+          numericDate = (_.first(props.whichGrid.relatedIdentifier.split(' ')[0].split('-'), 3)).join('-')
+        } else if (props.createDate && props.createDate.value) {
           var epochDate = Math.floor(props.createDate.value[1]);
           numericDate = new Date(epochDate).toISOString().substring(0, 10);
         }
