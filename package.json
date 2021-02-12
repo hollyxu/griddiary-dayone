@@ -1,0 +1,8 @@
+{
+  "name": "griddiary2dayone",
+  "description": "",
+  "version": "1.0.0",
+  "dependencies": {
+    "underscore": "1.9.1"
+  }
+}
